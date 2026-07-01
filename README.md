@@ -1,8 +1,8 @@
 ﻿# OpenClaw Mission Control
 
-OpenClaw Mission Control is a local-first operations console for coordinating software work across agents, tasks, approvals, project documentation, and release readiness.
+OpenClaw Mission Control is a local-first operations console for coordinating software work across agents, project rooms, tasks, approvals, documentation, and release readiness.
 
-It is designed for teams that want a practical command center for project rooms, task flow, review gates, and local-first automation planning without giving browser code direct access to shell commands or sensitive machine state.
+It is designed for teams that want a practical command center for project flow and local-first automation planning without giving browser code direct access to shell commands or sensitive machine state.
 
 ![OpenClaw Mission Control screenshot](docs/assets/openclaw-mission-control.png)
 
@@ -17,6 +17,19 @@ It is designed for teams that want a practical command center for project rooms,
 - Project OS workspace for architecture, roadmap, workflow, risks, and release documents.
 - Live activity feed backed by local audit events.
 - Planned path toward Tauri desktop packaging and a Python worker layer.
+
+## Core Concepts
+
+OpenClaw Mission Control is organized around a small product model:
+
+- Workspaces hold rooms, boards, agents, approvals, documents, and activity.
+- Project Rooms group work around operational objectives.
+- Tasks move through board columns and can be assigned to agents or human reviewers.
+- Agents represent capability-bounded roles, not unrestricted automation authority.
+- Approvals capture human decision points before risky work proceeds.
+- Activity Events form the local audit trail.
+
+See [docs/object-model.md](docs/object-model.md) for the full model.
 
 ## Running Locally
 
@@ -37,6 +50,23 @@ npm run validate
 ```
 
 `npm run check` validates JavaScript syntax. `npm run build` copies the static app to a timestamped folder under `build-output/`. `npm run validate` runs both checks in sequence.
+
+## Configuration
+
+Copy `.env.example` if you need to document local settings for a future gateway or desktop build. The current static prototype does not require secrets or environment variables.
+
+## Documentation
+
+- [Documentation Index](docs/README.md)
+- [Architecture](ARCHITECTURE.md)
+- [Design](DESIGN.md)
+- [Governance](GOVERNANCE.md)
+- [Roadmap](ROADMAP.md)
+- [Workflows](WORKFLOWS.md)
+- [Security Model](docs/security-model.md)
+- [Local Gateway](docs/local-gateway.md)
+- [Deployment](docs/deployment.md)
+- [API Roadmap](docs/api-roadmap.md)
 
 ## Safety Model
 
@@ -60,7 +90,7 @@ See [ROADMAP.md](ROADMAP.md) for the phased plan:
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 ## License
 

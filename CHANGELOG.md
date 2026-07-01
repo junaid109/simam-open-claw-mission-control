@@ -1,9 +1,24 @@
 ﻿# Changelog
 
-## 0.1.0 - Initial prototype
+All notable project changes are tracked here.
 
-- Added a local-first mission-control interface for supervised software work.
-- Added project rooms, agent roster, task board, live activity feed, approval queue, command routing, and Project OS workspace.
-- Added browser-local persistence for board state, task movement, approvals, command history, and audit events.
-- Added open-source project metadata, contribution guide, security policy, issue templates, pull request template, and validation workflow.
-- Added roadmap for desktop packaging, native bridge, Python worker layer, and approval-gated local execution.
+## Unreleased
+
+### Added
+
+- Documentation index for product and engineering guides.
+- Object model covering workspaces, rooms, boards, tasks, agents, approvals, activity events, and validation checks.
+- Local gateway plan for future Tauri, Python worker, and adapter runtime capabilities.
+- Security model documenting current browser limits, approval classes, and blocked operations.
+- Deployment notes for local development, static builds, GitHub Pages, and future desktop packaging.
+- API roadmap for command routing, approval requests, worker jobs, and activity events.
+- `.env.example`, `.dockerignore`, and `Makefile` for cleaner open-source onboarding.
+
+## 0.1.0
+
+### Added
+
+- Local-first mission control prototype.
+- Agent roster, project rooms, workflow board, approval queue, command router, live feed, and Project OS workspace.
+- Public documentation for architecture, design, governance, workflows, risks, release notes, security, and contribution process.
+- Static screenshot for the README.

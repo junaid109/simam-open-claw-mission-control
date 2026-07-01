@@ -1,0 +1,9 @@
+﻿node_modules
+build-output
+dist
+.git
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

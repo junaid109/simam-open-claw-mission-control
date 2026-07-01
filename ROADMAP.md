@@ -1,6 +1,6 @@
 ﻿# Roadmap
 
-OpenClaw Mission Control should grow in deliberate slices: first make local product state useful, then add a desktop bridge, then add read-only automation, and only then allow approval-gated execution.
+OpenClaw Mission Control should grow in deliberate slices: first make local product state useful, then define the product operating model, then add a desktop bridge, read-only automation, and approval-gated execution.
 
 ## Phase 1: Real Local Product State
 
@@ -38,9 +38,30 @@ Scope:
 Exit criteria:
 
 - The operator can inspect project doctrine without leaving Mission Control.
-- Release discipline, agent safety rules, and known risks are part of the main workflow.
+- Release discipline, safety rules, and known risks are part of the main workflow.
 
-## Phase 3: Agent Platform Registry
+## Phase 3: Product Object Model And API Contracts
+
+Status: next
+
+Purpose: make rooms, tasks, agents, approvals, activity, and gateway requests consistent before adding native capabilities.
+
+Scope:
+
+- Formal object model for workspaces, rooms, boards, tasks, agents, approvals, and activity events.
+- Stable IDs and lifecycle states.
+- Command route request and result schema.
+- Approval request and decision schema.
+- Activity event schema.
+- Import/export path for local state.
+
+Exit criteria:
+
+- The frontend state maps to documented objects.
+- Future gateway and worker interfaces have clear contracts.
+- The product can grow without renaming core concepts every phase.
+
+## Phase 4: Agent Platform Registry
 
 Status: next
 
@@ -48,7 +69,7 @@ Purpose: support real agent platforms without giving them unsafe authority too e
 
 Scope:
 
-- Registry for Core Assistant, Hermes-style local agents, OpenHands, AutoGen, and future adapters.
+- Registry for local assistants, Hermes-style local agents, OpenHands, AutoGen, and future adapters.
 - Capability profiles: read-only, propose edits, run checks, mutate files, external network, credentials.
 - Safety boundary per platform.
 - Adapter readiness checklist.
@@ -59,9 +80,9 @@ Exit criteria:
 - Agent platforms can be represented, planned, and reviewed.
 - No external agent can mutate files or execute commands without an approval-gated bridge.
 
-## Phase 4: Tauri Desktop Shell
+## Phase 5: Tauri Desktop Shell
 
-Status: start after Phases 1 and 2 feel stable
+Status: start after Phases 1 through 3 feel stable
 
 Purpose: convert the web UI into a local desktop app with secure native capabilities.
 
@@ -70,7 +91,7 @@ Why Tauri:
 - Tauri is a desktop app framework.
 - The UI remains web-based HTML/CSS/JS.
 - The native shell is Rust, which exposes explicit commands to the frontend.
-- It is lighter than Electron and gives better control over local permissions.
+- It is lighter than Electron and gives good control over local permissions.
 
 Initial Tauri scope:
 
@@ -86,7 +107,7 @@ Exit criteria:
 - The frontend can ask the native layer for read-only project facts.
 - Native commands are allowlisted and audited.
 
-## Phase 5: Python Worker Layer
+## Phase 6: Python Worker Layer
 
 Status: start after Tauri read-only bridge exists
 
@@ -106,7 +127,7 @@ Exit criteria:
 - Worker calls are logged.
 - Mutating operations still require explicit approval.
 
-## Phase 6: Project Rooms and Workflows
+## Phase 7: Project Rooms And Workflows
 
 Status: after agent registry
 
@@ -114,7 +135,7 @@ Purpose: organize agent work around objectives instead of one flat dashboard.
 
 Scope:
 
-- Create rooms for workstreams such as `Approval Layer`, `Local Bridge`, `Project OS`, `Release Readiness`.
+- Create rooms for workstreams such as Approval Layer, Local Bridge, Project OS, and Release Readiness.
 - Assign agents, approvals, commands, docs, tasks, and logs to rooms.
 - Track human review status per room.
 - Add room-level audit timeline.
@@ -124,7 +145,7 @@ Exit criteria:
 - Multi-agent work has a clear operational container.
 - Rooms make work reviewable by a non-technical stakeholder.
 
-## Phase 7: Approval-Gated Local Execution
+## Phase 8: Approval-Gated Local Execution
 
 Status: later, after Tauri and Python foundations
 
@@ -145,7 +166,7 @@ Exit criteria:
 - Risky commands are proposed, reviewed, approved, and audited before execution.
 - Blocked commands remain blocked.
 
-## Phase 8: Provider and Local Model Integrations
+## Phase 9: Provider And Local Model Integrations
 
 Status: later
 
@@ -167,9 +188,10 @@ Exit criteria:
 ## Recommended Immediate Sequence
 
 1. Finish Phase 1 and Phase 2 polish.
-2. Add Phase 3 agent registry detail and room assignment.
-3. Start Phase 4 Tauri shell as soon as the local UI state feels stable.
-4. Add Python only after Tauri can safely broker read-only local access.
+2. Align frontend state with the documented object model.
+3. Add Phase 4 agent registry detail and room assignment.
+4. Start Phase 5 Tauri shell as soon as the local UI state and schemas feel stable.
+5. Add Python only after Tauri can safely broker read-only local access.
 
 ## Engineering Standard
 
@@ -181,6 +203,3 @@ Use pragmatic full-stack discipline:
 - Log all local actions.
 - Prefer validation checks and smoke checks over heavy process for early prototype work.
 - Keep every integration reversible until it is proven safe.
-
-
-
