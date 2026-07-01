@@ -7,7 +7,7 @@ Thanks for helping improve OpenClaw Mission Control.
 - Keep the project local-first by default.
 - Do not add command execution without approval gates and audit logging.
 - Keep browser code unable to mutate local files or run shell commands.
-- Treat AI-agent output as proposed work until reviewed by a human.
+- Treat assistant or automation output as proposed work until reviewed by a maintainer.
 - Prefer small, reversible changes with clear validation evidence.
 
 ## Local Workflow
@@ -25,5 +25,5 @@ The current app is dependency-free. Do not add dependencies unless they are nece
 - Describe what changed and why.
 - Note any safety implications.
 - Run validation checks.
-- Update `ROADMAP.md`, `ARCHITECTURE.md`, or `IMPLEMENTATION_LOG.md` if behavior or direction changed.
+- Update `ROADMAP.md`, `ARCHITECTURE.md`, `CHANGELOG.md`, or related docs if behavior or direction changed.
 - Do not include credentials, production settings, or local machine secrets.

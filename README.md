@@ -1,20 +1,22 @@
 ﻿# OpenClaw Mission Control
 
-OpenClaw Mission Control is a local-first mission-control interface for safe AI-agent-assisted product engineering. It is built around agent supervision, project rooms, approval gates, command routing, Project OS documentation, live audit history, and future desktop/local-worker integration.
+OpenClaw Mission Control is a local-first operations console for coordinating software work across agents, tasks, approvals, project documentation, and release readiness.
 
-The current app is dependency-free: native HTML, CSS, JavaScript, and Node scripts. This keeps the prototype easy to run, inspect, and publish as an open-source project.
+It is designed for teams that want a practical command center for project rooms, task flow, review gates, and local-first automation planning without giving browser code direct access to shell commands or sensitive machine state.
 
-## Features
+![OpenClaw Mission Control screenshot](docs/assets/openclaw-mission-control.png)
 
-- Agent roster with roles, capabilities, status, and adapter direction.
-- Project Rooms kanban board for Approval Layer, Local Bridge, Project OS, Agent Integrations, and Release Readiness.
+## Highlights
+
+- Agent roster with roles, capabilities, status, and task counts.
+- Project Rooms board for Approval Layer, Local Bridge, Project OS, Agent Integrations, and Release Readiness.
+- Kanban-style task flow across Inbox, Assigned, In Progress, Review, and Done.
 - Persistent browser-local state using `localStorage`.
-- Task movement across Inbox, Assigned, In Progress, Review, and Done.
-- Approval queue with approve, revise, and deny decisions.
-- Deterministic command routing demo with blocked/approval/intake classifications.
-- Project OS workspace for docs, architecture, roadmap, risks, and release notes.
-- Live feed powered by audit-log events.
-- Open-source metadata, issue templates, PR template, and GitHub Actions validation workflow.
+- Approval queue for risky work categories.
+- Deterministic command-routing demo with safe, approval-required, intake-required, and blocked outcomes.
+- Project OS workspace for architecture, roadmap, workflow, risks, and release documents.
+- Live activity feed backed by local audit events.
+- Planned path toward Tauri desktop packaging and a Python worker layer.
 
 ## Running Locally
 
@@ -24,21 +26,25 @@ npm run dev
 
 Open `http://127.0.0.1:5173`.
 
+The app currently has no runtime dependencies beyond Node.js.
+
 ## Validation
 
 ```bash
 npm run check
 npm run build
+npm run validate
 ```
 
-`npm run check` validates JavaScript syntax. `npm run build` copies the static app to a timestamped folder under `build-output/`.
+`npm run check` validates JavaScript syntax. `npm run build` copies the static app to a timestamped folder under `build-output/`. `npm run validate` runs both checks in sequence.
 
 ## Safety Model
 
-- The browser app does not execute shell commands.
-- Command routing is demonstrative and audit-logged.
-- Destructive, credential, production, dependency, billing, and external-account actions are treated as approval-gated or blocked.
-- Tauri and Python worker integrations are planned but not enabled yet.
+- Browser code does not execute shell commands.
+- Command routing is local and demonstrative.
+- Destructive, credential, production, dependency, billing, and external-account operations are modeled as approval-gated or blocked.
+- Native capabilities are planned for a future Tauri layer with explicit allowlisted commands.
+- Python workers are planned as bounded local processes behind the native bridge.
 
 ## Roadmap
 

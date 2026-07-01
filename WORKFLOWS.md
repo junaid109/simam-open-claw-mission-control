@@ -1,4 +1,4 @@
-# Project Workflows
+﻿# Project Workflows
 
 ## Development Flow
 
@@ -14,7 +14,7 @@
 
 1. Give the agent a bounded prompt tied to a product goal.
 2. Require the agent to state files in scope and tests to run.
-3. Review generated diffs carefully.
+3. Review proposed diffs carefully.
 4. Reject overreach, fake APIs, unsafe actions, or brittle behavior.
 5. Run checks locally.
 6. Record accepted changes and remaining risk.
@@ -35,3 +35,5 @@
 3. Update release notes.
 4. Record branch notes and implementation summary.
 5. Create a reviewable pull request or release bundle.
+
+

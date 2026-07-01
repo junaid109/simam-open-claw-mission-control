@@ -1,8 +1,8 @@
-# Agentic Development Guide
+﻿# Project Governance
 
 ## Prime Directive
 
-AI agents accelerate engineering work, but they do not replace engineering accountability. Every generated change must be reviewed, tested, and accepted by a human before it is considered product work.
+Automation can accelerate engineering work, but it does not replace engineering accountability. Every proposed change must be reviewed, validated, and accepted by a maintainer before it is considered product work.
 
 ## Agent Roles
 
@@ -26,7 +26,7 @@ Agents must request explicit human approval before:
 
 ## Review Checklist
 
-Before accepting agent-generated work:
+Before accepting automation-assisted work:
 
 1. Read the diff, not just the summary.
 2. Confirm the change matches the product goal.
@@ -54,3 +54,4 @@ An agent should stop and ask for guidance when:
 - The plan requires a dependency not already approved.
 - The agent finds a possible data loss path.
 - Test failures are unrelated and cannot be explained.
+

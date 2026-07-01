@@ -30,7 +30,7 @@ Purpose: make the repo's operating doctrine visible inside the product.
 
 Scope:
 
-- In-app document reader for `AGENTS.md`, `DESIGN.md`, `ARCHITECTURE.md`, `WORKFLOWS.md`, `KNOWN_RISKS.md`, `IMPLEMENTATION_LOG.md`, and `RELEASE_NOTES.md`.
+- In-app document reader for `GOVERNANCE.md`, `DESIGN.md`, `ARCHITECTURE.md`, `WORKFLOWS.md`, `KNOWN_RISKS.md`, `CHANGELOG.md`, and `RELEASE_NOTES.md`.
 - Branch notes and implementation notes surface.
 - Risk and release note creation flow.
 - Project health checklist.
@@ -48,7 +48,7 @@ Purpose: support real agent platforms without giving them unsafe authority too e
 
 Scope:
 
-- Registry for Codex, Hermes-style local agents, OpenHands, AutoGen, and future adapters.
+- Registry for Core Assistant, Hermes-style local agents, OpenHands, AutoGen, and future adapters.
 - Capability profiles: read-only, propose edits, run checks, mutate files, external network, credentials.
 - Safety boundary per platform.
 - Adapter readiness checklist.
@@ -181,3 +181,6 @@ Use pragmatic full-stack discipline:
 - Log all local actions.
 - Prefer validation checks and smoke checks over heavy process for early prototype work.
 - Keep every integration reversible until it is proven safe.
+
+
+
