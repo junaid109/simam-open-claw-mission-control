@@ -2204,3 +2204,312 @@ body {
     grid-template-columns: repeat(5, minmax(250px, 82vw));
   }
 }
+
+/* Executive dashboard refinement */
+.command-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 14px;
+  padding: 18px clamp(20px, 2.3vw, 36px) 0;
+}
+
+.command-ribbon > div {
+  min-height: 92px;
+  padding: 16px 18px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(18, 24, 33, 0.78), rgba(11, 16, 23, 0.86));
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  color: #7dd3fc;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.command-ribbon strong,
+.stage-toolbar strong,
+.brief-grid strong {
+  display: block;
+  color: #fff;
+  font-weight: 850;
+}
+
+.command-ribbon strong {
+  font-size: 1.18rem;
+  line-height: 1.1;
+}
+
+.command-ribbon small {
+  display: block;
+  margin-top: 6px;
+  color: #8fa0b6;
+  font-size: 0.78rem;
+}
+
+.ops-board--pro {
+  grid-template-columns: minmax(250px, 288px) minmax(720px, 1fr) minmax(310px, 340px);
+  padding-top: 18px;
+}
+
+.stage-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.stage-toolbar strong {
+  font-size: 1rem;
+}
+
+.room-brief {
+  margin: 6px 0 18px;
+  padding: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(255, 122, 26, 0.16), transparent 22rem),
+    linear-gradient(145deg, rgba(18, 24, 33, 0.9), rgba(8, 13, 20, 0.92));
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.28);
+}
+
+.room-brief .room-heading {
+  margin: 0 0 18px;
+}
+
+.room-brief .room-heading h1 {
+  font-size: clamp(2.2rem, 3.6vw, 4.2rem);
+}
+
+.brief-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.brief-grid div {
+  min-height: 74px;
+  padding: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.13);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.brief-grid span {
+  display: block;
+  color: #8fa0b6;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.brief-grid strong {
+  margin-top: 7px;
+  font-size: 1.5rem;
+  letter-spacing: -0.04em;
+}
+
+.brief-progress {
+  height: 7px;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.brief-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff7a1a, #22d3ee, #22c55e);
+}
+
+.ops-side-stack {
+  position: sticky;
+  top: 112px;
+  display: grid;
+  gap: 14px;
+  align-self: start;
+  max-height: calc(100vh - 132px);
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.ops-side-stack .live-feed,
+.approval-desk {
+  position: static;
+  max-height: none;
+  overflow: visible;
+  padding: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(20, 25, 34, 0.92), rgba(13, 17, 24, 0.94));
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.25);
+}
+
+.approval-mini-list {
+  display: grid;
+  gap: 10px;
+}
+
+.approval-mini-list article {
+  display: grid;
+  gap: 8px;
+  padding: 13px;
+  border: 1px solid rgba(148, 163, 184, 0.11);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.052);
+}
+
+.approval-mini-list strong {
+  color: #fff;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.approval-mini-list p,
+.approval-mini-list small {
+  color: #9aabba;
+  font-size: 0.76rem;
+  line-height: 1.42;
+}
+
+.ops-side-stack .feed-list {
+  margin-top: 10px;
+}
+
+.ops-side-stack .feed-item {
+  padding: 12px;
+}
+
+.ops-side-stack .feed-icon {
+  width: 34px;
+  height: 28px;
+  border-radius: 9px;
+  font-size: 0.62rem;
+  font-weight: 850;
+}
+
+.ops-actions .icon-button {
+  width: auto;
+  min-width: 44px;
+  padding: 0 12px;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.agent-rail,
+.ops-side-stack .live-feed,
+.approval-desk,
+.room-brief,
+.task-column,
+.command-ribbon > div,
+.panel {
+  backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.kanban-board {
+  align-items: stretch;
+}
+
+.task-column {
+  min-height: 390px;
+}
+
+.task-card {
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(148, 163, 184, 0.3);
+  background: linear-gradient(180deg, rgba(30, 38, 51, 0.98), rgba(18, 24, 34, 0.98));
+}
+
+@media (max-width: 1460px) {
+  .ops-board--pro {
+    grid-template-columns: minmax(240px, 280px) minmax(650px, 1fr);
+  }
+
+  .ops-side-stack {
+    grid-column: 1 / -1;
+    position: static;
+    max-height: none;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  }
+}
+
+@media (max-width: 1180px) {
+  .command-ribbon,
+  .brief-grid,
+  .ops-side-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .command-ribbon,
+  .brief-grid,
+  .ops-side-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .room-brief {
+    padding: 16px;
+  }
+}
+
+/* Mobile polish fixes */
+@media (max-width: 760px) {
+  .ops-topbar {
+    align-items: start;
+  }
+
+  .ops-topbar > * {
+    justify-self: stretch;
+  }
+
+  .ops-brand {
+    justify-content: start;
+  }
+
+  .ops-metrics,
+  .ops-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    width: 100%;
+  }
+
+  .ops-metrics span,
+  .time-chip,
+  .ops-actions .icon-button,
+  .ops-actions .status-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .command-ribbon {
+    padding-top: 20px;
+  }
+
+  .agent-chat {
+    left: 16px;
+    right: 16px;
+    bottom: 14px;
+    width: auto;
+    min-height: 46px;
+  }
+}
