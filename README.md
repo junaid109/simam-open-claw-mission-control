@@ -1,4 +1,4 @@
-﻿# OpenClaw Mission Control
+# OpenClaw Mission Control
 
 OpenClaw Mission Control is a local-first operations console for coordinating software work across agents, project rooms, tasks, approvals, documentation, and release readiness.
 
@@ -49,7 +49,11 @@ npm run build
 npm run validate
 ```
 
-`npm run check` validates JavaScript syntax. `npm run build` copies the static app to a timestamped folder under `build-output/`. `npm run validate` runs both checks in sequence.
+## Deploying
+
+This project can be deployed to Vercel as a static site. See [docs/vercel.md](docs/vercel.md) for build settings and operational guidance.
+
+`npm run check` validates JavaScript syntax. `npm run build` copies the static app to `public-dist/` and writes an archived build under `build-output/`. `npm run validate` runs both checks in sequence.
 
 ## Configuration
 
@@ -66,6 +70,7 @@ Copy `.env.example` if you need to document local settings for a future gateway 
 - [Security Model](docs/security-model.md)
 - [Local Gateway](docs/local-gateway.md)
 - [Deployment](docs/deployment.md)
+- [Vercel Deployment](docs/vercel.md)
 - [API Roadmap](docs/api-roadmap.md)
 
 ## Safety Model
