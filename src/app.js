@@ -104,10 +104,11 @@ function renderShell() {
     </main>
     <section class="ops-lower-grid">
       ${renderConsole()}
+      ${renderWorkflow()}
       ${renderProjectOS()}
+      ${renderAdapterMatrix()}
       ${renderQuality()}
     </section>
-    <button class="agent-chat" type="button" data-command="open agent chat">Agent Chat</button>
   </div>`;
 
   attachHandlers();
@@ -158,7 +159,7 @@ function renderOpsSide() {
 
 function renderApprovalDesk() {
   const pending = state.approvals.filter((approval) => approval.decision === "pending");
-  return `<section class="approval-desk"><div class="panel__header"><div><p class="section-label">Approval desk</p><h2>Human gates</h2></div>${pill(`${pending.length} pending`, pending.length ? "warning" : "safe")}</div><div class="approval-mini-list">${pending.slice(0, 3).map((approval) => `<article><div class="row-title"><strong>${esc(approval.title)}</strong>${pill(approval.risk, approval.risk === "high" || approval.risk === "blocked" ? "danger" : "warning")}</div><p>${esc(approval.summary)}</p><small>${esc(approval.target)} / ${esc(approval.requester)}</small></article>`).join("") || `<article><strong>No approvals waiting</strong><p>All gated actions have a decision.</p></article>`}</div></section>`;
+  return `<section class="approval-desk"><div class="panel__header"><div><p class="section-label">Approval desk</p><h2>Human gates</h2></div>${pill(`${pending.length} pending`, pending.length ? "warning" : "safe")}</div><div class="approval-mini-list">${pending.slice(0, 3).map((approval) => `<article><div class="row-title"><strong>${esc(approval.title)}</strong>${pill(approval.risk, approval.risk === "high" || approval.risk === "blocked" ? "danger" : "warning")}</div><p>${esc(approval.summary)}</p><small>${esc(approval.target)} / ${esc(approval.requester)}</small><div class="approval-actions"><button data-approval="${approval.id}" data-decision="approved" type="button">Approve</button><button data-approval="${approval.id}" data-decision="revision-requested" type="button">Revise</button><button data-approval="${approval.id}" data-decision="denied" type="button">Deny</button></div></article>`).join("") || `<article><strong>No approvals waiting</strong><p>All gated actions have a decision.</p></article>`}</div></section>`;
 }
 
 function renderLiveFeed() {
@@ -169,6 +170,13 @@ function renderConsole() {
   return `<section class="panel panel--console" id="console"><div class="panel__header"><div><p class="section-label">Local Console</p><h2>Deterministic command routing</h2></div><span id="route-pill"></span></div><form class="console-form" id="console-form"><label class="sr-only" for="command-input">Command</label><span>CMD</span><input id="command-input" value="run smoke tests"><button class="button button--primary" type="submit">Route</button></form><div class="console-output" id="console-output"></div><div class="example-row">${["status", "open approvals", "run smoke tests", "create hermes adapter plan", "delete prototype archive", "edit .env production API key"].map((example) => `<button type="button" data-command="${esc(example)}">${esc(example)}</button>`).join("")}</div><div class="history-list"><div class="mini-header"><strong>Command history</strong></div>${state.commandHistory.slice(0, 5).map((entry) => `<article class="history-row"><strong>${esc(entry.command)}</strong><span>${esc(entry.route)} / ${esc(entry.handler)} / ${esc(entry.at)}</span></article>`).join("")}</div></section>`;
 }
 
+function renderWorkflow() {
+  return `<section class="panel workflow-panel"><div class="panel__header"><div><p class="section-label">Execution plan</p><h2>Build phases</h2></div>${pill(projectHealth.activePhase, "info")}</div><div class="phase-list">${state.workflow.map((phase) => `<article class="phase-row phase-${phase.status}"><div><strong>${esc(phase.name)}</strong><span>${esc(phase.owner)} / ${esc(phase.status)}</span></div><p>${esc(phase.objective)}</p><div class="phase-track"><span style="width:${phase.progress}%"></span></div><small>${esc(phase.evidence)}</small></article>`).join("")}</div></section>`;
+}
+
+function renderAdapterMatrix() {
+  return `<section class="panel adapter-panel"><div class="panel__header"><div><p class="section-label">Agent platforms</p><h2>Adapter readiness</h2></div>${pill("supervised", "safe")}</div><div class="adapter-grid">${agentPlatforms.map((platform) => `<article><div class="row-title"><strong>${esc(platform.name)}</strong>${pill(platform.status, toneFor[platform.status] || "muted")}</div><p>${esc(platform.role)}</p><small>${esc(platform.boundary)}</small><div class="tag-row">${platform.capabilities.map((item) => `<span>${esc(item)}</span>`).join("")}</div></article>`).join("")}</div></section>`;
+}
 function renderProjectOS() {
   return `<section class="panel panel--wide" id="project-os"><div class="panel__header"><div><p class="section-label">Project OS</p><h2>Workspace doctrine and logs</h2></div>${pill("live docs", "info")}</div><div class="project-os-layout"><div class="doc-list">${projectDocs.map((doc) => `<button class="doc-button ${state.activeDoc === doc.path ? "active" : ""}" data-doc="${esc(doc.path)}" type="button"><strong>${esc(doc.title)}</strong><span>${esc(doc.purpose)}</span></button>`).join("")}</div><article class="doc-viewer"><div class="row-title"><strong>${esc(state.activeDoc)}</strong><button class="button button--neutral" id="reload-doc" type="button">Reload doc</button></div><pre>${esc(state.docContent)}</pre></article></div></section>`;
 }
@@ -215,6 +223,7 @@ function attachHandlers() {
   document.getElementById("console-form")?.addEventListener("submit", (event) => { event.preventDefault(); renderDecision(document.getElementById("command-input").value); });
   document.querySelectorAll("[data-command]").forEach((button) => button.addEventListener("click", () => renderDecision(button.dataset.command)));
   document.querySelectorAll("[data-task]").forEach((button) => button.addEventListener("click", () => { const task = state.tasks.find((item) => item.id === button.dataset.task); task.status = button.dataset.move; saveState("Task moved", `${task.title}: ${task.status}`); renderShell(); }));
+  document.querySelectorAll("[data-approval]").forEach((button) => button.addEventListener("click", () => { const approval = state.approvals.find((item) => item.id === button.dataset.approval); approval.decision = button.dataset.decision; saveState("Approval decision recorded", `${approval.title}: ${approval.decision}`, "Safety"); renderShell(); }));
   document.querySelectorAll("[data-doc]").forEach((button) => button.addEventListener("click", () => loadDoc(button.dataset.doc)));
   document.getElementById("reload-doc")?.addEventListener("click", () => loadDoc(state.activeDoc));
   document.querySelectorAll("[data-platform]").forEach((button) => button.addEventListener("click", () => { const platform = agentPlatforms.find((item) => item.id === button.dataset.platform); saveState("Agent platform inspected", `${platform.name}: ${platform.boundary}`); renderShell(); }));
